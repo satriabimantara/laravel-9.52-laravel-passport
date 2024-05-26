@@ -10,6 +10,10 @@ class Tweet extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'body'
+    ];
+
     /**
      * Get the user that owns the Tweet
      *
@@ -18,5 +22,10 @@ class Tweet extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
     }
 }

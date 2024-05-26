@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tweet;
 use Illuminate\Http\Request;
 
-class TweetController extends Controller
+class TweetControllerAPI extends Controller
 {
     //
     public function index(Request $request)
     {
         $tweets = $request->user()->tweets()->with(['user'])->latestFirst()->get();
-        $context = [
-            'tweets' => $tweets
-        ];
-        return view('tweet.index', $context);
+        return $tweets;
     }
 
     // store a new tweet
@@ -28,6 +24,6 @@ class TweetController extends Controller
             "body" => $request->input('body')
         ])->load('user');
 
-        return redirect('tweets');
+        return $tweet;
     }
 }

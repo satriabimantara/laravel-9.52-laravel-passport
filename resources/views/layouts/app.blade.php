@@ -30,7 +30,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link @if(request()->routeIs('tweets')) active @endif" href="{{ route('tweets') }}">{{ __('Tweet') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(request()->routeIs('developer')) active @endif" href="{{ route('developer') }}">{{ __('Developer') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
